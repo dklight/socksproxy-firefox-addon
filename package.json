@@ -1,0 +1,9 @@
+{
+  "name": "socksproxy",
+  "title": "Socks Proxy",
+  "id": "jid1-CDhCxYtMn1Dlig",
+  "description": "SSH tunneling made easy",
+  "author": "p1rox",
+  "license": "MPL 2.0",
+  "version": "0.1"
+}
