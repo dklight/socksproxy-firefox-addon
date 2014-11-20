@@ -1,9 +1,23 @@
 {
-  "name": "socksproxy",
-  "title": "Socks Proxy",
-  "id": "jid1-CDhCxYtMn1Dlig",
-  "description": "SSH tunneling made easy",
-  "author": "p1rox",
-  "license": "MPL 2.0",
-  "version": "0.2"
+	"name": "socksproxy",
+	"title": "Socks Proxy",
+	"id": "jid1-CDhCxYtMn1Dlig",
+	"description": "SSH tunneling made easy.\n\nDoc : https://p1rox.fr/socksproxy/",
+	"author": "p1rox",
+	"license": "MPL 2.0",
+	"version": "0.2",
+	"homepage": "https://p1rox.fr/socksproxy/",
+	"permissions": {"private-browsing": true},
+    "preferences": [{
+        "name": "host",
+        "title": "IP or domain (ex: 127.0.0.1 or domain.com) : ",
+        "type": "string",
+        "value": "127.0.0.1"
+    },
+    {
+        "name": "port",
+        "title": "Port (ex: 1337)",
+        "type": "integer",
+        "value": 1337
+    }]
 }
