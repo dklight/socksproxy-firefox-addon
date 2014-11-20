@@ -4,9 +4,9 @@
 
 SSH tunneling made easy !
 
-**For now it only works with a tunnel on 127.0.0.1 with port 1337.**
+Configure one time your tunnel settings, and enable it or disable it in one click !
 
-Configuration settings coming soon.
+Go to your add-ons manager to configure it.
 
 ## How to build
 1. install Firefox add-ons sdk 
