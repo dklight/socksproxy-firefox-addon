@@ -5,7 +5,7 @@
 	"description": "SSH tunneling made easy.\n\nDoc : https://p1rox.fr/socksproxy/",
 	"author": "p1rox",
 	"license": "MPL 2.0",
-	"version": "0.3",
+	"version": "0.4",
 	"homepage": "https://p1rox.fr/socksproxy/",
 	"permissions": {"private-browsing": true},
     "preferences": [{
@@ -16,8 +16,29 @@
     },
     {
         "name": "port",
-        "title": "Port (ex: 1337)",
+        "title": "Port (ex: 1337) : ",
         "type": "integer",
         "value": 1337
+    },
+    {
+        "name": "remotedns",
+        "title": "Remote DNS : ",
+        "type": "bool",
+        "value": true
+    },
+    {
+        "name": "socksversion",
+        "title": "Version (SOCKS 5 doesn't support remote DNS) : ",
+        "type": "menulist",
+        "value": 1337,
+        "options": [
+        {
+            "value": "5",
+            "label": "SOCKS 5"
+        },
+        {
+            "value": "1",
+            "label": "SOCKS 4"
+        }]
     }]
 }
