@@ -40,5 +40,11 @@
             "value": "1",
             "label": "SOCKS 4"
         }]
+    },
+    {
+        "name": "noproxyon",
+        "title": "No proxy for (ex: localhost, 127.0.0.1) :",
+        "type": "string",
+        "value": "localhost, 127.0.0.1"
     }]
 }
