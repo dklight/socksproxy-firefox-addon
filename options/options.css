@@ -1,0 +1,31 @@
+/**
+ * @file Style sheet for options page.
+ * @author Anthony Sabathier <sabathiera@gmail.com>
+ */
+
+hr {
+    border-top:none;
+    border-bottom: 1px solid grey;
+}
+
+label {
+    margin: 0.5em;
+    font-size: 1.5em;
+    line-height: 2.4em;
+}
+
+input[type=text], input[type=number], select {
+    display: block;
+    margin: 0.5em;
+    width: 50%;
+    height: 2.5em;
+    float: right;
+}
+
+input[type=submit] {
+    display: block;
+    height: 2.5em;
+    text-align: center;
+    width: 25%;
+    margin-left:70%;
+}

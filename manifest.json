@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "socksproxy",
+  "version": "1.0.1",
+  "description": "Socks proxying made easy. Compatible with SSH tunneling.",
+  "author": "p1rox",
+  "homepage_url": "https://github.com/avignat/socksproxy-firefox-addon",
+
+  "icons": {
+    "48": "icons/socks-icon.svg",
+    "96": "icons/socks-icon.svg"
+  },
+
+  "applications": {
+    "gecko": {
+      "strict_min_version": "56.0a1"
+    }
+  },
+
+  "background": {
+    "scripts": ["background/socksproxy.js"]
+  },
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "icons/socks-disabled.svg",
+    "default_title": "SOCKS - Disabled"
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+
+  "permissions": ["proxy", "storage"]
+}

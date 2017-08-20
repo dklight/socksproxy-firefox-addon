@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="options.css"/>
+    </head>
+    <body>
+        <form action="#">
+            <h1> SOCKS PROXY SETTINGS </h1>
+            <hr>
+            <label for="host">IP or domain:<input type="text" id="host" name="host" placeholder="ex: 127.0.0.1 or example.com" /></label>
+            <hr>
+            <label for="port">Port:<input type="number" id="port" name="port" placeholder="ex: 1337" /></label>
+            <hr>
+            <!-- For some reason SOCKS version is not supported so hiding it for now -->
+            <input type="hidden" id="version" name="version" value="5"/>
+            <!--label for="version">SOCKS Version:
+                <select id="version" name="version">
+                    <option value="5">SOCKS 5</option>
+                    <option value="4">SOCKS 4</option>
+                </select>
+            </label>
+            <hr-->
+            <label for="noproxy">No proxy for:<input type="text" id="noproxy" name="noproxy" placeholder="ex: localhost, 127.0.0.1" /></label>
+            <input type="submit" id="save" name="save" value="Save" />
+        </form>
+
+        <script src="options.js"></script>
+    </body>
+</html>
