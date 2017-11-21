@@ -37,7 +37,7 @@
             if (data && data.host && data.port && data.version && data.noproxy && Array.isArray(data.noproxy)) {
                 data.enable = true;
                 browser.proxy.register(proxyScriptURL)
-                    .then(() => { browser.runtime.sendMessage(data, {toProxyScript: true};})
+                    .then(() => { browser.runtime.sendMessage(data, {toProxyScript: true});})
                     .catch((message) => { console.error("PAC file not registered: ", message);});
             } else {
                 console.log("No socks settings stored or malformated data, please go to the preferences.", "//about:addons");
