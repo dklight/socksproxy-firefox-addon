@@ -1,6 +1,6 @@
 # Socks Proxy Add-on
 
-[https://github.com/avignat/socksproxy-firefox-addon](https://github.com/avignat/socksproxy-firefox-addon)
+[https://github.com/dklight/socksproxy-firefox-addon](https://github.com/dklight/socksproxy-firefox-addon)
 
 ## Description
 

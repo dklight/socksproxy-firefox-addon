@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Socks Proxy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Socks proxying made easy. Compatible with SSH tunneling.",
   "author": "p1rox",
-  "homepage_url": "https://github.com/avignat/socksproxy-firefox-addon",
+  "homepage_url": "https://github.com/dklight/socksproxy-firefox-addon",
 
   "icons": {
     "48": "icons/socks-icon.svg",
@@ -13,7 +13,7 @@
 
   "applications": {
     "gecko": {
-      "strict_min_version": "56.0"
+      "strict_min_version": "59.0"
     }
   },
 
@@ -32,5 +32,5 @@
     "browser_style": true
   },
 
-  "permissions": ["proxy", "storage"]
+  "permissions": ["proxy", "browserSettings", "storage"]
 }

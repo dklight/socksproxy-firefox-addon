@@ -6,51 +6,56 @@
 (function () {
     "use strict";
 
-    const debug = false;
+    const debug = true;
 
     // HTML elements for settings
-    const formElements = {
+    let formElements = {
         host: document.querySelector("#host"),
         port: document.querySelector("#port"),
         version: document.querySelector("#version"),
-        noProxy: document.querySelector("#noproxy")
+        proxyDNS: document.querySelector("#proxydns"),
+        passthrough: document.querySelector("#passthrough")
     };
 
     /** Store the currently selected settings using browser.storage.local. */
     function saveSettings() {
         debug && console.debug("Entering saveSettings.");
-        let settings = {
-            host: formElements.host.value,
-            port: formElements.port.value,
-            version: formElements.version.value,
-            noproxy: formElements.noProxy.value.split(" ").join("").split(",")
+        
+        let socksSettings = {
+            proxyType: 'manual',
+            socks: formElements.host.value + ':' + formElements.port.value,
+            socksVersion: parseInt(formElements.version.value),
+            proxyDNS: formElements.proxyDNS.checked,
+            passthrough: formElements.passthrough.value
         };
-        browser.storage.local.set({settings});
+        debug && console.debug('settings to be stored:', socksSettings);
+        
+        browser.storage.local.set({socksSettings});
 
-        if (debug) {
-            console.log("settingsVar", settings);
-            browser.storage.local.get().then((stored) => {console.log("local storage", stored);});
-        }
+        debug && browser.storage.local.get().then((stored) => {console.debug('local storage: ', stored);});
     }
 
+    
     /** Load and check to display settings provided by browser.storage.local */
     function loadSettings(storage) {
         debug && console.debug("Entering loadSettings.", {localStorage: storage});
-        let data = storage.settings;
+        let data = storage.socksSettings;
         // Check if all values exist
-        if (data && data.host && data.port && data.version && data.noproxy && Array.isArray(data.noproxy)) {
-            formElements.host.value = data.host;
-            formElements.port.value = data.port;
-            formElements.version.value = data.version;
-            formElements.noProxy.value = data.noproxy.join(", ");
+        if (data && data.socks && data.socks.split(':').length == 2 && data.socksVersion) {
+            formElements.host.value = data.socks.split(':')[0];
+            formElements.port.value = data.socks.split(':')[1];
+            formElements.version.value = data.socksVersion;
+            formElements.proxyDNS.checked = data.proxyDNS || false;
+            formElements.passthrough.value = data.passthrough || '';
         } else {
             console.error("Failed to load properties.");
         }
     }
 
-    // On opening the options page, fetch stored settings and update the UI with them.
+    // Update UI on options page opening
     browser.storage.local.get().then(loadSettings, console.error);
 
     // Whenever the contents of the textarea changes, save the new values
     document.querySelector("#save").addEventListener("click", saveSettings);
+    debug && console.debug('Options script initialized.');
 })();

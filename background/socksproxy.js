@@ -5,70 +5,63 @@
 
 (function() {
     "use strict";
-    const debug = false;
-    const proxyScriptURL = "proxy/socksproxy-pac.js";
-    const state = {
+    
+    const debug = true;
+    
+    var currentState = 'disabled';
+    
+    const states = {
         enabled: {
-            title: "SOCKS - Enabled",
-            icon: "icons/socks-enabled.svg"
+            title: 'SOCKS - Enabled',
+            icon: 'icons/socks-enabled.svg',
+            storageName: 'socksSettings'
         },
         disabled: {
-            title: "SOCKS - Disabled",
-            icon: "icons/socks-disabled.svg"
+            title: 'SOCKS - Disabled',
+            icon: 'icons/socks-disabled.svg',
+            storageName: 'originalProxySettings'
         }
     };
-
+    
     /** Handler for a click on browser action button */
     function toggleSocksProxy() {
         debug && console.debug("Entering toggleSocksProxy.");
-        browser.browserAction.getTitle({}).then( (title) => {
-            debug && console.debug("Title:", title);
-            (title == state.disabled.title) ? startProxy() : stopProxy();
-        });
+        currentState = (currentState != 'enabled') ? 'enabled' : 'disabled';
+        setProxy(currentState);
     }
 
-    /** Register PAC file with current settings */
-    function startProxy() {
-        debug && console.debug("Entering startProxy.");
-        // On opening the options page, fetch stored settings and update the UI with them.
-        browser.storage.local.get().then((storage) => {
-            debug && console.debug("local storage :", storage);
-            let data = storage.settings;
-            if (data && data.host && data.port && data.version && data.noproxy && Array.isArray(data.noproxy)) {
-                data.enable = true;
-                browser.proxy.register(proxyScriptURL)
-                    .then(() => { browser.runtime.sendMessage(data, {toProxyScript: true});})
-                    .catch((message) => { console.error("PAC file not registered: ", message);});
+    /** Sets relevant browser proxy settings based on enablement */
+    function setProxy(currentState) {
+        browser.storage.local.get().then((storageData) => {
+            debug && console.debug("local storage :", storageData);
+            let proxySettings = storageData[states[currentState].storageName];
+            debug && console.debug('proxySettings to be applied:', proxySettings);
+            if (proxySettings && (currentState === 'disabled' || (proxySettings.socks && proxySettings.socksVersion))) {
+                browser.proxy.settings.set({value: proxySettings}).then(() => { 
+                    setStateView(currentState); 
+                });                
             } else {
-                console.log("No socks settings stored or malformated data, please go to the preferences.", "//about:addons");
+                console.warn("No socks settings stored or malformated data, please go & check preferences.", "//about:addons");
             }
         });
     }
-
-    /** Unregister PAC file */
-    function stopProxy() {
-        debug && console.debug("Entering stopProxy.");
-        browser.proxy.unregister().then(() => { setStateView("disabled"); });
-    }
-
-    /** Handle messaging - handle PAC init success */
-    function handleMessages(message, sender) {
-        debug && console.debug("Entering socksproxy.js onMessage handler.");
-        if (sender.url != browser.extension.getURL(proxyScriptURL)) {
-            console.error("Message from unsupported source", {source: sender, message: message});
-        } else {
-            console.log("Message from PAC", {message: message});
-            (message === "PAC initialized successfully.") && setStateView("enabled");
-        }
-    }
-
-    /** Set style for browser action */
+    
+    /** Set style for browser action button */
     function setStateView(newState) {
-        browser.browserAction.setTitle({title: state[newState].title});
-        browser.browserAction.setIcon({path: state[newState].icon});    
+        browser.browserAction.setTitle({title: states[newState].title});
+        browser.browserAction.setIcon({path: states[newState].icon});    
     }
-
-    // Init the browser action button
-    browser.browserAction.onClicked.addListener(toggleSocksProxy);
-    browser.runtime.onMessage.addListener(handleMessages);
+    
+    /** Init the browser action button & stores original proxy settings */
+    function initAddon() {
+        browser.browserAction.onClicked.addListener(toggleSocksProxy);
+        browser.proxy.settings.get({}).then((proxySettings) => {
+            browser.storage.local.set({originalProxySettings: proxySettings.value});
+        });
+        
+        debug && console.debug('Add-on initialisation completed.');
+    }
+    
+    // Run initialization
+    initAddon();
 })();

@@ -14,7 +14,7 @@ label {
     line-height: 2.4em;
 }
 
-input[type=text], input[type=number], select {
+input[type=text], input[type=number], input[type=checkbox], select {
     display: block;
     margin: 0.5em;
     width: 50%;
