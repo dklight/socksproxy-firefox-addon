@@ -25,7 +25,7 @@
   "browser_action": {
     "browser_style": true,
     "default_icon": "icons/socks-disabled.svg",
-    "default_title": "SOCKS - Disabled"
+    "default_title": "__MSG_disabledTitle__"
   },
 
   "options_ui": {
