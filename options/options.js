@@ -52,10 +52,28 @@
         }
     }
 
-    // Update UI on options page opening
-    browser.storage.local.get().then(loadSettings, console.error);
-
-    // Whenever the contents of the textarea changes, save the new values
-    document.querySelector("#save").addEventListener("click", saveSettings);
-    debug && console.debug('Options script initialized.');
+	/** Load i18n for options UI */
+	function loadOptionsI18n() {
+		let capitalizedEltName = '';
+		// Matching names for formElements keys and i18n messages does help
+		for (var eltName in formElements) {
+			capitalizedEltName = eltName.charAt(0).toUpperCase() + eltName.slice(1);
+			formElements[eltName].previousSibling.data = browser.i18n.getMessage("options" + capitalizedEltName + "Label");
+		}
+		document.querySelector("#title").innerHTML = browser.i18n.getMessage("optionsTitle");
+	}
+	
+	/** JS initialization for options UI */
+	function initOptions() {
+		// Update UI on options page opening (language + values)
+		loadOptionsI18n();
+		browser.storage.local.get().then(loadSettings, console.error);
+		// Save button will actually save or dump error to console
+		document.querySelector("#save").addEventListener("click", saveSettings);
+		// Let debug guy know we initialized options
+		debug && console.debug('Options script initialized.');
+	}
+	
+	// Run initialization
+	initOptions();
 })();

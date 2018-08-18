@@ -1,0 +1,46 @@
+{
+  "extensionDescription": {
+    "message": "Socks proxying made easy. Compatible with SSH tunneling.",
+    "description": "Description of the extension."
+  },
+
+  "enabledTitle": {
+    "message": "SOCKS - Enabled",
+    "description": "Browser Action button - title when enabled."
+  },
+
+  "disabledTitle": {
+    "message": "SOCKS - Disabled",
+    "description": "Browser Action button - title when disabled."
+  },
+
+  "optionsTitle": {
+    "message": "SOCKS PROXY SETTINGS",
+    "description": "Options screen - title."
+  },
+
+  "optionsHostLabel": {
+    "message": "IP or hostname:",
+    "description": "Options screen label - hostname or IP address"
+  },
+
+  "optionsPortLabel": {
+    "message": "Port:",
+    "description": "Options screen label - Port number"
+  },
+
+  "optionsVersionLabel": {
+    "message": "SOCKS Version:",
+    "description": "Options screen label - SOCKS version"
+  },
+
+  "optionsProxyDNSLabel": {
+    "message": "Proxy DNS (SOCKS5):",
+    "description": "Options screen label - Proxy DNS activation (SOCKS5 only)"
+  },
+
+  "optionsPassthroughLabel": {
+    "message": "No proxy for:",
+    "description": "Options screen label - passthrough hostnames and IP addresses"
+  }
+}

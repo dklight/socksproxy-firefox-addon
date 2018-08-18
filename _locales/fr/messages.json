@@ -1,0 +1,46 @@
+{
+  "extensionDescription": {
+    "message": "L'utilisation de proxy socks facilitée. Compatible avec les tunnels SSH.",
+    "description": "Description de l'extension."
+  },
+
+  "enabledTitle": {
+    "message": "SOCKS - Activé",
+    "description": "Bouton Browser Action - attribut 'title' si activé."
+  },
+
+  "disabledTitle": {
+    "message": "SOCKS - Désactivé",
+    "description": "Bouton Browser Action - attribut 'title' si désactivé."
+  },
+
+  "optionsTitle": {
+    "message": "SOCKS PROXY - RÉGLAGES",
+    "description": "Interface Options - titre."
+  },
+
+  "optionsHostLabel": {
+    "message": "Nom d'hôte ou adresse IP :",
+    "description": "Label Interface Options - nom d'hôte ou adresse IP."
+  },
+
+  "optionsPortLabel": {
+    "message": "Port :",
+    "description": "Label Interface Options - port."
+  },
+
+  "optionsVersionLabel": {
+    "message": "Version SOCKS :",
+    "description": "Label Interface Options - version SOCKS."
+  },
+
+  "optionsProxyDNSLabel": {
+    "message": "Proxy DNS (SOCKS5) :",
+    "description": "Label Interface Options - activation du Proxy DNS (SOCKS5 uniquement)."
+  },
+
+  "optionsPassthroughLabel": {
+    "message": "Pas de proxy pour :",
+    "description": "Label Interface Options - hôtes ou IP pour lesquels pas de proxy."
+  }
+}

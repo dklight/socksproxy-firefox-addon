@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
   "name": "Socks Proxy",
-  "version": "1.0.3",
-  "description": "Socks proxying made easy. Compatible with SSH tunneling.",
+  "version": "1.0.0",
+  "description": "__MSG_extensionDescription__",
   "author": "p1rox",
   "homepage_url": "https://github.com/dklight/socksproxy-firefox-addon",
+  "default_locale": "en",
 
   "icons": {
     "48": "icons/socks-icon.svg",
